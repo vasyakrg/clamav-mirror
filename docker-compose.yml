@@ -4,7 +4,6 @@ services:
     image: hub.realmanual.ru/pub/clamav-mirror:latest
     container_name: clamav-mirror
     restart: always
-    command: serve
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.clamav-mirror.entrypoints=https"
