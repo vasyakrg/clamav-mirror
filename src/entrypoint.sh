@@ -33,15 +33,15 @@ serve_database() {
     if [ -e $CVD_DIR/databases ]; then
         echo "Hosting ClamAV Database..."
         if [ -e /mnt/Caddyfile ]; then
+            echo "Add cron with ${CRONTAB_TIME}"
+            echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
             echo "Using mounted Caddyfile config..."
-            exec caddy run --config /mnt/Caddyfile --adapter caddyfile
-            echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
-            exec caddy run --config ./Caddyfile --adapter caddyfile
+            exec caddy run --config ./Caddyfile --adapter caddyfile && crond -f -l 8
         else
-            echo "Using default Caddyfile config..."
-            # exec caddy file-server --listen :8080 --browse --root $CVD_DIR/databases
+            echo "Add cron with ${CRONTAB_TIME}"
             echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
-            exec caddy run --config ./Caddyfile --adapter caddyfile
+            echo "Using default Caddyfile config..."
+            exec caddy run --config ./Caddyfile --adapter caddyfile && crond -f -l 8
         fi
     else
         echo "CVD database is missing..."
