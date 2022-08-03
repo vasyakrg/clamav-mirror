@@ -1,0 +1,20 @@
+image: hub.realmanual.ru/images/docker
+
+variables:
+  BUILD_SCRIPT: ci/build.sh
+  GIT_SUBMODULE_STRATEGY: none
+  DOCKER_NO_BRANCH_TAG: 1
+  DOCKER_TAG_AS_LATEST: 0
+
+stages:
+- build
+
+build_master:
+  stage: build
+  variables:
+    DOCKER_BASEIMAGE: docker.io/python:3.9-alpine
+  script:
+    - chmod +x "${BUILD_SCRIPT}" && ./${BUILD_SCRIPT}
+  only:
+    changes:
+      - app/*

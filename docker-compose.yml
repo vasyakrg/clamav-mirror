@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  clamav-mirror:
+    image: hub.realmanual.ru/pub/clamav-mirror:latest
+    container_name: clamav-mirror
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.clamav-mirror.entrypoints=https"
+      - "traefik.http.routers.clamav-mirror.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.clamav-mirror.tls=true"
+      - "traefik.http.routers.clamav-mirror.tls.certresolver=letsEncrypt"
+      - "traefik.http.services.clamav-mirror-service.loadbalancer.server.port=8080"
+      - "traefik.docker.network=webproxy"
+    expose:
+      - 8080
+    volumes:
+      - ./data/cvdupdate:/mnt/cvdupdate
+    networks:
+      - clamav-net
+      # - webproxy
+
+networks:
+  clamav-net:
+    name: clamav-net
+  # webproxy:
+  #   external: true

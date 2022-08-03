@@ -1,0 +1,5 @@
+data/cvdupdate/*.json
+data/cvdupdate/databases/*
+data/cvdupdate/logs/*
+
+!.gitkeep
