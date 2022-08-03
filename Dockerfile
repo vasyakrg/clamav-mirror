@@ -17,4 +17,4 @@ RUN chmod +x ./entrypoint.sh
 
 # Start Server
 EXPOSE 8080
-CMD [ "./entrypoint.sh", "serve", ";", "crond", ";", "echo", "'crond started..'" ]
+CMD [ "./entrypoint.sh", "serve" ]

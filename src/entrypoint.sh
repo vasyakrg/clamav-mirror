@@ -36,12 +36,12 @@ serve_database() {
             echo "Add cron with ${CRONTAB_TIME}"
             echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
             echo "Using mounted Caddyfile config..."
-            exec caddy run --config ./Caddyfile --adapter caddyfile
+            exec crond; caddy run --config ./Caddyfile --adapter caddyfile
         else
             echo "Add cron with ${CRONTAB_TIME}"
             echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
             echo "Using default Caddyfile config..."
-            exec caddy run --config ./Caddyfile --adapter caddyfile
+            exec crond; caddy run --config ./Caddyfile --adapter caddyfile
         fi
     else
         echo "CVD database is missing..."
