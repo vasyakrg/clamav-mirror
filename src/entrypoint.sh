@@ -65,7 +65,7 @@ case "$1" in
         update_database
     ;;
 
-    serve || *)
+    serve|*)
         check_database
         serve_database
     ;;
