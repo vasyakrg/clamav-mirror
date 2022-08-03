@@ -15,6 +15,3 @@ build_master:
     DOCKER_BASEIMAGE: docker.io/python:3.9-alpine
   script:
     - chmod +x "${BUILD_SCRIPT}" && ./${BUILD_SCRIPT}
-  only:
-    changes:
-      - app/*
