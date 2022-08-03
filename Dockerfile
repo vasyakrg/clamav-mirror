@@ -15,8 +15,6 @@ RUN pip install --no-cache-dir cvdupdate
 COPY src/ $WORKDIR
 RUN chmod +x ./entrypoint.sh
 
-RUN /usr/bin/crontab /crontab.txt
-
 # Start Server
 EXPOSE 8080
 CMD [ "./entrypoint.sh", "serve" ]
