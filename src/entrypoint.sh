@@ -35,10 +35,12 @@ serve_database() {
         if [ -e /mnt/Caddyfile ]; then
             echo "Using mounted Caddyfile config..."
             exec caddy run --config /mnt/Caddyfile --adapter caddyfile
+            exec crond -f -l 8
         else
             echo "Using default Caddyfile config..."
             # exec caddy file-server --listen :8080 --browse --root $CVD_DIR/databases
             exec caddy run --config ./Caddyfile --adapter caddyfile
+            exec crond -f -l 8
         fi
     else
         echo "CVD database is missing..."

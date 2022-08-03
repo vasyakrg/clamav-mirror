@@ -1,0 +1,1 @@
+* * */1 * * /opt/app-root/src/entrypoint.sh update >> /var/log/script.log
