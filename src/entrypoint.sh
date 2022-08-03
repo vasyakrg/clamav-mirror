@@ -36,12 +36,12 @@ serve_database() {
             echo "Using mounted Caddyfile config..."
             exec caddy run --config /mnt/Caddyfile --adapter caddyfile
             echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
-            exec caddy run --config ./Caddyfile --adapter caddyfile && /usr/bin/crontab -f -l 8
+            exec caddy run --config ./Caddyfile --adapter caddyfile
         else
             echo "Using default Caddyfile config..."
             # exec caddy file-server --listen :8080 --browse --root $CVD_DIR/databases
             echo "${CRONTAB_TIME} /opt/app-root/src/entrypoint.sh update >> /var/log/clamv-update.log" | /usr/bin/crontab -
-            exec caddy run --config ./Caddyfile --adapter caddyfile && /usr/bin/crontab -f -l 8
+            exec caddy run --config ./Caddyfile --adapter caddyfile
         fi
     else
         echo "CVD database is missing..."
