@@ -18,10 +18,10 @@ services:
       - ./data/cvdupdate:/mnt/cvdupdate
     networks:
       - clamav-net
-      # - webproxy
+      - webproxy
 
 networks:
   clamav-net:
     name: clamav-net
-  # webproxy:
-  #   external: true
+  webproxy:
+    external: true
