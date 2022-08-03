@@ -19,28 +19,18 @@ docker build . --file Dockerfile --tag clamav-mirror:latest
 ### Run (Ephemeral)
 
 ```sh
-docker run -it --rm --name clamav-mirror -p 8080:8080 clamav-mirror
+docker compose up -d
 ```
 
-### Run (Persistent)
-
-```sh
-# Create a detached volume
-docker volume create cvdupdate
-
-# Run the mirror with the volume mounted
-docker run -it --rm --name clamav-mirror -p 8080:8080 \
-  --mount source=cvdupdate,target=/mnt/cvdupdate clamav-mirror
-
-# Delete the detached volume
-docker volume rm cvdupdate
-```
-
-### Update ClamAV Database definitions
+### Manual update ClamAV Database definitions
 
 ```sh
 docker exec -it clamav-mirror ./entrypoint.sh update
 ```
+
+### Cron
+
+Docker update automate and run always one day, but you may change it in data/crontab.txt file
 
 ## ClamAV Configuration
 
@@ -49,3 +39,9 @@ Once you have the mirror running, you can visit <http://localhost:8080> to see w
 ```txt
 DatabaseMirror http://localhost:8080
 ```
+
+##### Author
+- **Vassiliy Yegorov** [vasyakrg](https://github.com/vasyakrg)
+- [site](https://realmanual.ru)
+- [youtube](https://youtube.com/realmanual)
+- [telegram](https://t.me/realmanual_group)
