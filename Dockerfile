@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir cvdupdate
 COPY src/ $WORKDIR
 RUN chmod +x ./entrypoint.sh
 
-ADD crontab.txt /crontab.txt
+ADD data/crontab.txt /crontab.txt
 RUN /usr/bin/crontab /crontab.txt
 
 # Start Server
