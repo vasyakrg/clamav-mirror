@@ -12,6 +12,8 @@ services:
       - "traefik.http.routers.clamav-mirror.tls.certresolver=letsEncrypt"
       - "traefik.http.services.clamav-mirror-service.loadbalancer.server.port=8080"
       - "traefik.docker.network=webproxy"
+    environment:
+      - CRONTAB_TIME
     expose:
       - 8080
     volumes:
