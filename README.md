@@ -30,7 +30,7 @@ docker exec -it clamav-mirror ./entrypoint.sh update
 
 ### Cron
 
-Docker update automate and run always one day, but you may change it in data/crontab.txt file
+Docker update automate and run always one day, but you may change it in .env file
 
 ## ClamAV Configuration
 
